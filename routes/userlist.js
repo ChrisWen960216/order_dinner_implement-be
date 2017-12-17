@@ -1,26 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const Canvas = require('canvas'),
-  Image = Canvas.Image,
-  canvas = new Canvas(200, 200),
-  ctx = canvas.getContext('2d');
+const fs = require('fs');
+const path = require('path');
+const Canvas = require('canvas');
+// const Image = Canvas.Image;
+
+// const out = fs.createWriteStream(path.join(__dirname, '../public/images/form.png'));
+// const stream = canvas.pngStream();
 
 router.get('/', (request, response) => {
-  ctx.font = '30px Impact';
-  ctx.rotate(0.1);
-  ctx.fillText('Awesome!', 50, 100);
+  fs.readFile(path.join(__dirname, '../public/images/form.png'), function (error, data) {
+    if (error) {
+      throw error;
+    } else {
+      const img = new Canvas.Image();
+      img.src = data;
 
-  var te = ctx.measureText('Awesome!');
-  ctx.strokeStyle = 'rgba(0,0,0,0.5)';
-  ctx.beginPath();
-  ctx.lineTo(50, 102);
-  ctx.lineTo(50 + te.width, 102);
-  ctx.stroke();
-
-  // console.log('<img src="' + canvas.toDataURL() + '" />');
-  const url = canvas.toDataURL();
-  console.log(url);
-  return response.send({ code: 0, payload: url });
+      const canvas = new Canvas(img.width, img.height);
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, img.width / 1.2, img.height / 1.2);
+      const dataUrl = canvas.toDataURL();
+      return response.json({ code: 0, payload: dataUrl });
+    }
+  });
 });
 
 module.exports = router;
