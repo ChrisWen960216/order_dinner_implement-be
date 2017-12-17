@@ -9,6 +9,10 @@ const Canvas = require('canvas');
 // const stream = canvas.pngStream();
 
 router.get('/', (request, response) => {
+  return response.json({ code: 0, payload: 'HAHA' });
+});
+
+router.get('/pic', (request, response) => {
   fs.readFile(path.join(__dirname, '../public/images/form.png'), function (error, data) {
     if (error) {
       throw error;
