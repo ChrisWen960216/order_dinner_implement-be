@@ -22,12 +22,16 @@ router.get('/', (request, response) => {
       ctx.font = '30px Courier New';
       // 设置字体填充颜色
       ctx.fillStyle = 'blue';
-      // 从坐标点(50,50)开始绘制文字
-      // ctx.fillText('卿培', 500, 470);
       ctx.fillText('卿培', 600, 470);
       ctx.fillText('卿培', 250, 470);
       const dataUrl = canvas.toDataURL();
-      return response.json({ code: 0, payload: dataUrl });
+      const writeData = canvas.toBuffer();
+      fs.writeFile('./public/images/test.png', writeData, error => {
+        if (error) {
+          return console.log(error);
+        }
+      });
+      return response.json({ code: 0, payload: 'HAHAHAHAHAH' });
     }
   });
 });
