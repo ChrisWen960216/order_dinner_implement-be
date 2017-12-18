@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Canvas = require('canvas');
+const attachmentPath = path.join(__dirname, '../public/images/test.png');
 
 function getPng () {
   fs.readFile(path.join(__dirname, '../public/images/form.png'), function (error, data) {
@@ -20,7 +21,7 @@ function getPng () {
       ctx.fillText('卿培', 150, 275);
       const dataUrl = canvas.toDataURL();
       const writeData = canvas.toBuffer();
-      fs.writeFile('./test.png', writeData, error => {
+      fs.writeFile(attachmentPath, writeData, error => {
         if (error) {
           return console.log(error);
         }

@@ -1,4 +1,7 @@
 const nodemailer = require('nodemailer');
+const path = require('path');
+
+const attachmentPath = path.join(__dirname, '../public/images/test.png');
 
 nodemailer.createTestAccount((error, account) => {
   if (error) {
@@ -10,7 +13,7 @@ nodemailer.createTestAccount((error, account) => {
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: 'wentao@sansi.com', // generated ethereal user
+      user: '957638221@qq.com', // generated ethereal user
       pass: 'feiehomqbctobbbd' // generated ethereal password
     }
   });
@@ -21,7 +24,11 @@ nodemailer.createTestAccount((error, account) => {
     to: '<chriswen96@163.com>', // list of receivers
     subject: 'Hello ✔', // Subject line
     text: 'Hello world?', // plain text body
-    html: '<b>Hello world?</b>' // html body
+    html: '<b>Hello world?</b>', // html body，
+    attachments: [{
+      filename: 'test.png',
+      path: attachmentPath
+    }]
   };
 
   // send mail with defined transport object
