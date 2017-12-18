@@ -1859,6 +1859,10 @@ node-schedule@^1.2.5:
     long-timeout "0.1.1"
     sorted-array-functions "^1.0.0"
 
+nodemailer@^4.4.1:
+  version "4.4.1"
+  resolved "http://registry.npm.taobao.org/nodemailer/download/nodemailer-4.4.1.tgz#ce480eb3db7b949b3366e301b8f0af1c1248025e"
+
 nodemon@^1.13.3:
   version "1.13.3"
   resolved "http://registry.npm.taobao.org/nodemon/download/nodemon-1.13.3.tgz#92d23e6b91dca351215a4b8a50d2bd838cd0f9e3"

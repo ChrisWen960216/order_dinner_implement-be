@@ -13,14 +13,14 @@ function getPng () {
       const canvas = new Canvas(img.width, img.height);
       const ctx = canvas.getContext('2d');
       ctx.drawImage(img, 0, 0, img.width, img.height);
-      ctx.font = '30px Courier New';
+      ctx.font = '24px Courier New';
       // 设置字体填充颜色
       ctx.fillStyle = 'blue';
-      ctx.fillText('卿培', 600, 470);
-      ctx.fillText('卿培', 250, 470);
+      ctx.fillText('卿培', 150, 220);
+      ctx.fillText('卿培', 150, 275);
       const dataUrl = canvas.toDataURL();
       const writeData = canvas.toBuffer();
-      fs.writeFile('./public/images/test.png', writeData, error => {
+      fs.writeFile('./test.png', writeData, error => {
         if (error) {
           return console.log(error);
         }
@@ -28,5 +28,5 @@ function getPng () {
     }
   });
 }
-
-module.exports = getPng;
+getPng();
+// module.exports = getPng;
