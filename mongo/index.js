@@ -1,10 +1,15 @@
 const Ids = require('./schema');
-const moment = require('moment');
-const toDay = moment().format('L');
-
+const { encode, decode } = require('../utils/transform');
 // 增加 / 修改 ids
 function $modifyIds (ids) {
-  return null;
+  const today = new Date();
+  const createTime = `${today.getFullYear()}-${today.getMonth()}-${today.getDay()}`;
+  // const idsModel = new Ids();
+  // idsModel.ids = ids;
+  // idsModel.createTime = createTime;
+  Ids.findOneAndUpdate({ createTime: createTime }, { ids: encode(ids), createTime: createTime }, { upsert: true, new: true }).then(_response => {
+    return _response;
+  });
 }
 
 // 获取ids

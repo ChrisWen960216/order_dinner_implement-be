@@ -1,8 +1,11 @@
 /** 初始化ids
  *
  */
-const { ids } = require('../global');
+let { ids } = require('../global');
+const { $getIds } = require('../mongo/index');
 
 function initIds () {
-
+  const initIds = $getIds();
+  ids = initIds;
+  return ids;
 }

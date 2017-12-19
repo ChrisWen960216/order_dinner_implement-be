@@ -24,7 +24,7 @@ function setTimeRange () {
   const startTime = new Date();
   startTime.setHours(8, 15, 0, 0);
   const finshTime = new Date();
-  finshTime.setHours(16, 20, 0, 0);
+  finshTime.setHours(20, 20, 0, 0);
   return [quantizationTime(startTime), quantizationTime(finshTime)];
 }
 
