@@ -1,7 +1,12 @@
-import User from './schema';
+const User = require('./schema');
 
 function insertUser (user, callback) {
-  return null;
+  const userModel = new User(user);
+  userModel.save((error, doc) => {
+    if (!error) {
+      console.log(doc);
+    }
+  });
 }
 
 function deleteUser (user, callback) {
@@ -19,3 +24,5 @@ function getUserList (callback) {
     }
   });
 }
+
+module.exports = { insertUser, deleteUser, getUserList };
