@@ -6,6 +6,7 @@ function filterTime (request, response, next) {
     return next();
   } else {
     const error = new Error('不在受理时间');
+    error.code = 2;
     return next(error);
   }
 }

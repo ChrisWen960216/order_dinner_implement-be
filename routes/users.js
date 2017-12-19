@@ -1,13 +1,7 @@
 const express = require('express');
 const router = express.Router();
-// const { insertUser } = require('../mongo/index');
-
-const ids = new Set();
-
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
-});
+const { $modifyIds } = require('../mongo/index');
+const { ids } = require('../global');
 
 router.post('/add', (request, response) => {
   const user = request.body;
@@ -17,6 +11,7 @@ router.post('/add', (request, response) => {
     return response.json({ code: 1, payload: message });
   } else {
     ids.add(uid);
+    $modifyIds(ids);
     // 数据库操作
     const message = 'Order complete!';
     return response.json({ code: 0, payload: message });
@@ -31,6 +26,7 @@ router.post('/delete', (request, response) => {
     return response.json({ code: 1, payload: message });
   } else {
     if (ids.delete(uid)) {
+      $modifyIds(ids);
       // 数据库操作
       const message = 'Cancel complete!';
       return response.json({ code: 0, payload: message });

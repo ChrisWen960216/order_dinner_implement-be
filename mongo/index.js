@@ -3,18 +3,18 @@ const moment = require('moment');
 const toDay = moment().format('L');
 
 // 增加 / 修改 ids
-function $modifyIds (ids, callback) {
+function $modifyIds (ids) {
   return null;
 }
 
 // 获取ids
-function $getIds (callback) {
+function $getIds () {
   return null;
 }
 
 // 通过ids获取详细信息
-function $getIdsDetails (ids, callback) {
+function $getIdsDetails (ids) {
   return null;
 }
 
-module.exports = { $insertUser, $deleteUser, $getUserList, $getUserInfo };
+module.exports = { $modifyIds, $getIds, $getIdsDetails };

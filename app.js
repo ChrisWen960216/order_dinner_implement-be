@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 const userList = require('./routes/userlist');
-const filterTime = require('./middlewares/filterTime');
+const { filterTime } = require('./middlewares/filterTime');
 
 var app = express();
 
@@ -23,11 +23,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(filterTime);
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/users', filterTime, users);
 app.use('/userlist', userList);
+
+app.use(function (error, request, response, next) {
+  if (error.code === 2) {
+    return response.json({ code: 1, message: error.message });
+  } else {
+    return next();
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
