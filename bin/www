@@ -8,7 +8,6 @@ var app = require('../app');
 var debug = require('debug')('order-dinner-implement-be:server');
 var http = require('http');
 const timing = require('../utils/timing');
-const mongoose = require('mongoose');
 
 /**
  * Get port from environment and store in Express.
@@ -27,7 +26,7 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-mongoose.connect('mongodb://localhost:27017/orderDinnerDB');
+// mongoose.connect('mongodb://localhost:27017/orderDinnerDB');
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

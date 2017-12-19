@@ -1751,6 +1751,10 @@ moment-timezone@^0.5.0:
   version "2.20.0"
   resolved "http://registry.npm.taobao.org/moment/download/moment-2.20.0.tgz#53396358994dd3a551e966a66af715ecb6c30ad0"
 
+moment@^2.20.1:
+  version "2.20.1"
+  resolved "http://registry.npm.taobao.org/moment/download/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
+
 mongodb-core@2.1.17:
   version "2.1.17"
   resolved "http://registry.npm.taobao.org/mongodb-core/download/mongodb-core-2.1.17.tgz#a418b337a14a14990fb510b923dee6a813173df8"
