@@ -6,16 +6,11 @@ const Schema = mongoose.Schema;
 
 const db = mongoose.createConnection('mongodb://localhost:27017/orderDinnerDB', { useMongoClient: true });
 
-const userSchema = new Schema({
-  name: String,
-  uid: Number,
-  phone: Number,
-  createTime: {
-    type: Date,
-    default: Date.now()
-  }
+const idsSchema = new Schema({
+  ids: Object,
+  createTime: new Date()
 });
 
-const User = db.model('user', userSchema);
+const Ids = db.model('ids', idsSchema);
 
-module.exports = User;
+module.exports = Ids;
