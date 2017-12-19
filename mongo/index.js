@@ -1,18 +1,19 @@
 const Ids = require('./schema');
+const moment = require('moment');
+const toDay = moment().format('L');
 
-function $insertUser (user, callback) {
+// 增加 / 修改 ids
+function $modifyIds (ids, callback) {
   return null;
 }
 
-function $deleteUser (user, callback) {
+// 获取ids
+function $getIds (callback) {
   return null;
 }
 
-function $getUserList (callback) {
-  return null;
-}
-
-function $getUserInfo (ids, callback) {
+// 通过ids获取详细信息
+function $getIdsDetails (ids, callback) {
   return null;
 }
 

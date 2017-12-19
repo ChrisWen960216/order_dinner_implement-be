@@ -7,7 +7,7 @@ const idsDB = mongoose.createConnection('mongodb://localhost:27017/orderDinnerDB
 
 const idsSchema = new Schema({
   ids: Object,
-  createTime: new Date()
+  createTime: String
 });
 
 const Ids = idsDB.model('ids', idsSchema);

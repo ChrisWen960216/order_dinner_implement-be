@@ -1,27 +1,31 @@
-/** Created By ChrisWen
- *  Get Local Time
+function judgeTime (time) {
+  const localTime = quantizationTime(time);
+  const timeRange = setTimeRange();
+  if (timeRange[0] < localTime && localTime < timeRange[1]) {
+    return true;
+  } else {
+    return false;
+  }
+  // startTime < localTime < endTime
+  // return true / false
+}
+/**
+ * 量化时间
+ * @param {Date} time
+ * @return {Number}
  */
-const date = new Date();
 
-const year = date.getFullYear();
-const month = date.getMonth() + 1;
-const day = date.getDate();
-const hour = date.getHours();
-const minute = date.getMinutes();
-const second = date.getSeconds();
-const weekend = date.getDay();
+function quantizationTime (time) {
+  return time.getTime();
+  // number
+}
 
-const localTime = {
-  year: year,
-  month: month,
-  day: day,
-  hour: hour,
-  minute: minute,
-  second: second,
-  weekend: weekend
-};
+function setTimeRange () {
+  const startTime = new Date();
+  startTime.setHours(8, 15, 0, 0);
+  const finshTime = new Date();
+  finshTime.setHours(16, 20, 0, 0);
+  return [quantizationTime(startTime), quantizationTime(finshTime)];
+}
 
-module.exports = localTime;
-console.log(localTime);
-
-console.log(`${year}年${month}月${day}日 ${hour}:${minute}:${second} 星期${weekend}`);
+exports.judgeTime = judgeTime;
