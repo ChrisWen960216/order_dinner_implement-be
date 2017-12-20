@@ -1,9 +1,10 @@
 const schedule = require('node-schedule');
-
+const { getAndSendPng } = require('./createPng');
 // 定时器
 function timing () {
-  schedule.scheduleJob('42 * * * * *', function () {
-    console.log('The answer to life, the universe, and everything!');
+  schedule.scheduleJob('40 * * * * *', function () {
+    return getAndSendPng();
+    // console.log('The answer to life, the universe, and everything!');
   });
 }
 

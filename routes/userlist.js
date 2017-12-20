@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const { ids } = require('../global');
-// router.get('/', (request, response) => {
-//   return response.json({ code: 0, payload: 'HAHA' });
-// });
+const { $getIdsDetails } = require('../mongo/index');
 
 router.get('/', (request, response) => {
   // do something
-  response.json({ code: 0, payload: 'HAHA' });
+  return $getIdsDetails(data => { response.json({ code: 0, payload: data }); });
 });
 
 module.exports = router;

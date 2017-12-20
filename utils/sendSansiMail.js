@@ -3,10 +3,7 @@ const path = require('path');
 
 const attachmentPath = path.join(__dirname, '../public/images/test.png');
 
-nodemailer.createTestAccount((error, account) => {
-  if (error) {
-    return console.log(error);
-  }
+function sendMail () {
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
     host: 'mail.sansi.com',
@@ -40,5 +37,6 @@ nodemailer.createTestAccount((error, account) => {
     // Preview only available when sending through an Ethereal account
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
   });
-})
-;
+}
+
+exports.sendMail = sendMail;
