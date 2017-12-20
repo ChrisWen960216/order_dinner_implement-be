@@ -17,6 +17,10 @@
           "comma-spacing":"warn",
           "space-before-blocks":"warn",
           "keyword-spacing":"warn",
-          "key-spacing":"warn"
+          "key-spacing":"warn",
+          "no-debugger":"off"
+      },
+      "globals": {
+          "$":true
       }
 }

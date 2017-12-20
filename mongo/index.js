@@ -6,6 +6,7 @@ const { encode, decode } = require('../utils/transform');
 function $modifyIds (ids) {
   const today = new Date();
   const createTime = `${today.getFullYear()}-${today.getMonth()}-${today.getDay()}`;
+
   return Ids.findOneAndUpdate({ createTime: createTime }, { ids: encode(ids), createTime: createTime }, { upsert: true, new: true }).then(_response => {
     return _response;
   });
@@ -30,4 +31,16 @@ function $getIdsDetails (callback) {
   });
 }
 
-module.exports = { $modifyIds, $getIds, $getIdsDetails };
+function $checkUser (user, callback) {
+  let result = false;
+  return User.findOne({ uid: user.uid, name: user.name, phone: user.phone }).exec().then(_response => {
+    if (_response) {
+      result = true;
+    } else {
+      result = false;
+    }
+    return callback(result);
+  });
+}
+
+module.exports = { $modifyIds, $getIds, $getIdsDetails, $checkUser };

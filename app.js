@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 const userList = require('./routes/userlist');
 const { filterTime } = require('./middlewares/filterTime');
+const { checkUser } = require('./middlewares/checkUser');
 
 var app = express();
 
@@ -25,7 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', filterTime, users);
+app.use('/users', filterTime, checkUser, users);
 app.use('/userlist', userList);
 
 app.use(function (error, request, response, next) {
