@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="style/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="style/bootstrap.min.css"> 
+    <script src="js/jquery.min.js"></script>  
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <script type="text/javascript" src='js/index.js'></script>
+</head>
+<body>
+    <div class="root">
+        <div class="header">
+            <span class="icon"><img src="img/icon.png"/></span>
+            <div class="title">
+                <span>加班餐预订系统</span>
+                <span>Dinner Booking System</span>
+            </div>
+        </div>
+        <div class="content">
+            <div class="info">
+                <div class="form-group">
+                    <label for="name">姓名</label>
+                    <input type="text" class="form-input" id="name" placeholder="请输入用户名">
+                </div>
+                <div class="form-group">
+                    <label for="uid">工号</label>
+                    <input type="text" class="form-input" id="uid" placeholder="请输入工号">
+                </div>
+                <div class="form-group">
+                    <label for="phone">联系方式</label>
+                    <input type="text" class="form-input" id="phone" placeholder="优先输入短号">
+                </div>
+                <button id="booking" class="btn">预订</button>
+                <button id="cancel" class="btn">取消预订</button>
+                <span class="booking-hint"></span>
+                <span class="cancel-hint"></span>
+            </div>
+            <div class="list">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>订餐姓名</th>
+                            <th>联系方式</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

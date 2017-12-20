@@ -1,0 +1,97 @@
+html,body{
+    width: 100%;
+    height: 100%;
+}
+.root{
+    background-color: #f4f4f4;
+    height: 100%;
+    font-size: 14px;
+    position: relative;
+    min-width: 1060px;
+    overflow-x: scroll;
+}
+.icon{
+    background-color: #ea4262;
+    width: 60px;
+    height: 60px;
+    float: left;
+    padding: 15px;
+}
+.title{
+    background: linear-gradient(to right,#ff4b68, #ff9d7f);
+    font-size: 0;
+    color: #fff;
+    height: 60px;
+    line-height: 60px;
+    margin-left: 60px;
+}
+.title>span{
+    font-size: 24px;
+    margin-left: 10px;
+}
+.title>:first-child{
+    padding-right: 10px;
+    border-right: 1px solid #fff;
+}
+.content{
+    padding: 20px;
+}
+.info{
+    padding:30px 10px;
+    background-color: #fff;
+}
+.btn{
+    background-color: #4a596c;
+    color: #fff;
+    height: 40px;
+    width: 100px;
+    margin-left: 20px;
+}
+.btn:hover,.btn:focus{
+    color: #fff!important;
+    background-color: #323d4a;
+}
+label{
+    margin: 0 20px;
+    color: #4a596c; 
+}
+.form-group{
+    display: inline-block;
+    margin-bottom: 0!important;
+    vertical-align: middle;
+}
+.form-input{
+    height: 40px; 
+    width: 160px;
+    color: #ccc;
+    padding-left: 20px;
+    border: 1px solid #ccc;
+}
+input::-webkit-input-placeholder{
+    color: #ccc;
+}
+
+.list{
+    background-color: #fff;
+    margin-top:20px;
+    padding: 10px 20px;
+}
+th,td{
+    color: #4a596c;     
+    height: 40px;
+}
+td{
+    color: #999;
+}
+.booking-hint{
+    font-size: 10px;
+    position: absolute;
+    left: 785px;
+    top: 153px;
+}
+.cancel-hint{
+    font-size: 10px;
+    position: absolute;
+    left: 908px;
+    top: 153px;
+}

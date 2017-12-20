@@ -1,3 +1,5 @@
+const { ids } = require('../global');
+
 /** Created By ChrisWen
  *  声明Schema
  */
@@ -10,6 +12,13 @@ const idsSchema = new Schema({
   createTime: String
 });
 
-const Ids = idsDB.model('ids', idsSchema);
+const userSchema = new Schema({
+  name: String,
+  uid: String,
+  phone: String
+});
 
-module.exports = Ids;
+const Ids = idsDB.model('ids', idsSchema);
+const User = idsDB.model('user', userSchema);
+
+module.exports = { Ids, User };
