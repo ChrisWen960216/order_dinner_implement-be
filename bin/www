@@ -7,12 +7,15 @@
 var app = require('../app');
 var debug = require('debug')('order-dinner-implement-be:server');
 var http = require('http');
-const timing = require('../utils/timing');
+const { initIds } = require('../utils/init');
+const { timingSendingMails, timingCleanIds } = require('../utils/timing');
 
 /**
  * Get port from environment and store in Express.
  */
-timing();
+initIds();
+timingSendingMails();
+timingCleanIds();
 var port = normalizePort(process.env.PORT || '7000');
 app.set('port', port);
 

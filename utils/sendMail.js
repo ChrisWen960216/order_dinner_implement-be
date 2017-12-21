@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const path = require('path');
 
-const attachmentPath = path.join(__dirname, '../public/images/test.png');
+const attachmentPath = path.join(__dirname, '../public/images/orderList.png');
 
 nodemailer.createTestAccount((error, account) => {
   if (error) {
@@ -26,7 +26,7 @@ nodemailer.createTestAccount((error, account) => {
     text: 'Hello world?', // plain text body
     html: '<b>Hello world?</b>', // html body，
     attachments: [{
-      filename: 'test.png',
+      filename: 'orderList.png',
       path: attachmentPath
     }]
   };

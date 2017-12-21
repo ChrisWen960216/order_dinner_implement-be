@@ -3,7 +3,7 @@ function decode (strings, set) {
   for (let i = 0; i < stringArray.length; i++) {
     set.add(stringArray[i]);
   }
-  return set;
+  // return set;
 }
 
 function encode (set) {

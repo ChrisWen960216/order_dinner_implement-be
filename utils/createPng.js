@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Canvas = require('canvas');
-const attachmentPath = path.join(__dirname, '../public/images/test.png');
+const attachmentPath = path.join(__dirname, '../public/images/orderList.png');
 const { ids } = require('../global');
 const { sendMail } = require('./sendSansiMail');
 const { $getIdsDetails } = require('../mongo/index');
@@ -37,16 +37,17 @@ function getAndSendPng () {
         ctx.fillRect(0, 0, img.width, img.height + 210);
 
         ctx.drawImage(img, 0, 0, img.width, img.height);
-        ctx.font = '24px Courier New';
+        ctx.font = '24px "Microsoft YaHei"';
         // 设置字体填充颜色
         ctx.fillStyle = 'black';
         ctx.fillText(size, 150, 230);
-        ctx.font = '16px Courier New';
+        ctx.font = '16px "Microsoft YaHei"';
         ctx.fillText(userlists[0][0], 120, 265);
         ctx.fillText(userlist[0]['phone'], 120, 290);
 
         for (let i = 0; i < userlist.length; i++) {
           const locationUser = getLocationOfUser(i, userlist);
+          console.log(locationUser);
           ctx.fillText(locationUser.text, locationUser.x, locationUser.y);
         }
         const dataUrl = canvas.toDataURL();

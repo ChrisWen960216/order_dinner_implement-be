@@ -7,7 +7,7 @@ function checkUser (request, response, next) {
       return next();
     } else {
       const error = new Error('信息不合法');
-      error.code = 2;
+      error.code = 1;
       return next(error);
     }
   });

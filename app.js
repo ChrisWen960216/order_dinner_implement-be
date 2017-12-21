@@ -30,8 +30,8 @@ app.use('/users', filterTime, checkUser, users);
 app.use('/userlist', userList);
 
 app.use(function (error, request, response, next) {
-  if (error.code === 2) {
-    return response.json({ code: 1, message: error.message });
+  if (error.code === 2 | error.code === 1) {
+    return response.json({ code: error.code, message: error.message });
   } else {
     return next();
   }

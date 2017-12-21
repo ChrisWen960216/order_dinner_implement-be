@@ -14,10 +14,25 @@ $(function () {
         uid: uid,
         phone: phone
       },
-      success: function () {
-        $('.booking-hint').html('预定成功');
-        $('.booking-hint').css('color', 'green');
-        getList();
+      success: function (res) {
+        switch (res.code) {
+        case 0:
+          $('.booking-hint').html('预定成功');
+          $('.booking-hint').css('color', 'green');
+          getList();
+          break;
+        case 1:
+          $('.booking-hint').html('预定失败');
+          $('.booking-hint').css('color', 'red');
+          break;
+        case 2:
+          $('.booking-hint').html('现在不在订餐时间内（8:15-16:20）');
+          $('.booking-hint').css('color', 'red');
+          break;
+        default:
+          $('.booking-hint').html('预定失败');
+          $('.booking-hint').css('color', 'red');
+        }
       },
       error: function () {
         $('.booking-hint').html('预定失败');
@@ -40,10 +55,15 @@ $(function () {
         uid: uid,
         phone: phone
       },
-      success: function () {
-        $('.cancel-hint').html('取消预定成功');
-        $('.cancel-hint').css('color', 'green');
-        getList();
+      success: function (res) {
+        if (!res.code) {
+          $('.cancel-hint').html('取消预定成功');
+          $('.cancel-hint').css('color', 'green');
+          getList();
+        } else {
+          $('.cancel-hint').html('取消预定失败');
+          $('.cancel-hint').css('color', 'red');
+        }
       },
       error: function () {
         $('.cancel-hint').html('取消预定失败');
@@ -68,15 +88,15 @@ function getList () {
 }
 
 function updateTable (res) {
-  if (res.code) {
+  if (!res.code) {
     var str = '';
     var data = res.payload;
 
     for (var i in data) {
       str += '<tr>' +
-            '<td>' + data[i].name + '</td>' +
-            '<td>' + data[i].phone + '</td>' +
-            '</tr>';
+        '<td>' + data[i].name + '</td>' +
+        '<td>' + data[i].phone + '</td>' +
+        '</tr>';
     }
     $('tbody').html(str);
   }
