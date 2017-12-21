@@ -32,13 +32,21 @@ function $getIdsDetails (callback) {
   });
 }
 
+/**
+ * @return {1:用户信息正确，电话错误 2:用户信息错误 3: 匹配通过}
+ */
+
 function $checkUser (user, callback) {
-  let result = false;
-  return User.findOne({ uid: user.uid, name: user.name, phone: user.phone }).exec().then(_response => {
+  let result = 2;
+  return User.findOne({ uid: user.uid, name: user.name }).exec().then(_response => {
     if (_response) {
-      result = true;
+      if (_response.phone !== user.phone) {
+        result = 1;
+      } else {
+        result = 3;
+      }
     } else {
-      result = false;
+      result = 2;
     }
     return callback(result);
   });

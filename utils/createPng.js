@@ -20,48 +20,52 @@ function getLocationOfUser (index, userlist) {
 
 function getAndSendPng () {
   return $getIdsDetails(userlist => {
-    const userlists = userlist.map(item => {
-      return [item.name, item.uid];
-    });
-    fs.readFile(path.join(__dirname, '../public/images/form.png'), function (error, data) {
-      if (error) {
-        throw error;
-      } else {
-        const img = new Canvas.Image();
-        img.src = data;
+    // console.log('BeforeMap', userlist);
+    if (userlist.length > 0) {
+      userlist.map(item => {
+        return [item.name, item.uid];
+      });
+      //  console.log('AfterMap', userlist);
+      fs.readFile(path.join(__dirname, '../public/images/form.png'), function (error, data) {
+        if (error) {
+          throw error;
+        } else {
+          const img = new Canvas.Image();
+          img.src = data;
 
-        const canvas = new Canvas(img.width * 2, img.height * 2);
-        const ctx = canvas.getContext('2d');
-        const size = userlist.length;
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, img.width, img.height + 210);
+          const canvas = new Canvas(img.width * 2, img.height * 2);
+          const ctx = canvas.getContext('2d');
+          const size = userlist.length;
+          ctx.fillStyle = 'white';
+          ctx.fillRect(0, 0, img.width, img.height + 360);
 
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-        ctx.font = '24px "Microsoft YaHei"';
-        // 设置字体填充颜色
-        ctx.fillStyle = 'black';
-        ctx.fillText(size, 150, 230);
-        ctx.font = '16px "Microsoft YaHei"';
-        ctx.fillText(userlists[0][0], 120, 265);
-        ctx.fillText(userlist[0]['phone'], 120, 290);
+          ctx.drawImage(img, 0, 0, img.width, img.height);
+          ctx.font = '24px "Microsoft YaHei"';
+          // 设置字体填充颜色
+          ctx.fillStyle = 'black';
+          ctx.fillText(size, 150, 230);
+          ctx.font = '16px "Microsoft YaHei"';
+          ctx.fillText(userlist[0]['name'], 120, 265);
+          ctx.fillText(userlist[0]['phone'], 120, 290);
 
-        for (let i = 0; i < userlist.length; i++) {
-          const locationUser = getLocationOfUser(i, userlist);
-          console.log(locationUser);
-          ctx.fillText(locationUser.text, locationUser.x, locationUser.y);
-        }
-        const dataUrl = canvas.toDataURL();
-        const writeData = canvas.toBuffer();
-        fs.writeFile(attachmentPath, writeData, error => {
-          if (error) {
-            return console.log(error);
-          } else {
-            return null;
-            // return sendMail();
+          for (let i = 0; i < userlist.length; i++) {
+            const locationUser = getLocationOfUser(i, userlist);
+            ctx.fillText(locationUser.text, locationUser.x, locationUser.y);
           }
-        });
-      }
-    });
+          const dataUrl = canvas.toDataURL();
+          const writeData = canvas.toBuffer();
+          fs.writeFile(attachmentPath, writeData, error => {
+            if (error) {
+              return console.log(error);
+            } else {
+              return sendMail();
+            }
+          });
+        }
+      });
+    } else {
+      return null;
+    }
   });
 }
 exports.getAndSendPng = getAndSendPng;

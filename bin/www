@@ -9,6 +9,8 @@ var debug = require('debug')('order-dinner-implement-be:server');
 var http = require('http');
 const { initIds } = require('../utils/init');
 const { timingSendingMails, timingCleanIds } = require('../utils/timing');
+const PORT = require('../config.json').env.port;
+console.log(`Listening at port:${PORT}`);
 
 /**
  * Get port from environment and store in Express.
@@ -16,7 +18,7 @@ const { timingSendingMails, timingCleanIds } = require('../utils/timing');
 initIds();
 timingSendingMails();
 timingCleanIds();
-var port = normalizePort(process.env.PORT || '7000');
+var port = normalizePort(PORT);
 app.set('port', port);
 
 /**

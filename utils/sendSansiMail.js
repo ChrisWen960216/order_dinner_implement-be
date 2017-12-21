@@ -3,28 +3,24 @@ const path = require('path');
 
 const attachmentPath = path.join(__dirname, '../public/images/orderList.png');
 
+const transporterConfig = require('../config.json').mail.transporter;
+const mailOptionsConfig = require('../config.json').mail.mailOptions;
+
 function sendMail () {
   // create reusable transporter object using the default SMTP transport
-  const transporter = nodemailer.createTransport({
-    host: 'mail.sansi.com',
-    port: 25,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: 'sansi\\uid12404',
-      pass: 'Sansi1280'
-    }
-  });
+  const transporter = nodemailer.createTransport(transporterConfig);
 
   // setup email data with unicode symbols
   const mailOptions = {
-    from: '"ChrisWen" <wentao@sansi.com>',
-    to: '<wentao@sansi.com>',
-    subject: '软件研究所今日订餐人员名单',
-    text: '软件研究所今日订餐人员名单',
-    html: '<b>软件研究所今日订餐人员名单</b>',
+    'from': mailOptionsConfig.from,
+    'to': mailOptionsConfig.to,
+    'subject': mailOptionsConfig.subject,
+    'text': mailOptionsConfig.text,
+    html: '<p><img src="cid:00000001"/></p>',
     attachments: [{
       filename: 'orderList.png',
-      path: attachmentPath
+      path: attachmentPath,
+      cid: '00000001'
     }]
   };
 
@@ -33,9 +29,7 @@ function sendMail () {
     if (error) {
       return console.log(error);
     } else {
-      console.log('Message sent: %s', info.messageId);
-      // Preview only available when sending through an Ethereal account
-      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+      console.log('Message sent: %s', mailOptionsConfig.to);
     }
   });
 }

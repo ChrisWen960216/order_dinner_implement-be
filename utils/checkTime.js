@@ -1,3 +1,6 @@
+const starttime = require('../config.json').time.startTime;
+const finshtime = require('../config.json').time.finshTime;
+
 function judgeTime (time) {
   const localTime = quantizationTime(time);
   const timeRange = setTimeRange();
@@ -22,9 +25,9 @@ function quantizationTime (time) {
 
 function setTimeRange () {
   const startTime = new Date();
-  startTime.setHours(8, 15, 0, 0);
+  startTime.setHours(starttime[0], starttime[1]);
   const finshTime = new Date();
-  finshTime.setHours(20, 16, 0, 0);
+  finshTime.setHours(finshtime[0], finshtime[1]);
   return [quantizationTime(startTime), quantizationTime(finshTime)];
 }
 

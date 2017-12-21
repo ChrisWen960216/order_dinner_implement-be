@@ -1,11 +1,11 @@
 const { ids } = require('../global');
-
+const dbUrl = require('../config.json').db.url;
 /** Created By ChrisWen
  *  声明Schema
  */
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const idsDB = mongoose.createConnection('mongodb://localhost:27017/orderDinnerDB', { useMongoClient: true });
+const idsDB = mongoose.createConnection(dbUrl, { useMongoClient: true });
 
 const idsSchema = new Schema({
   ids: Object,

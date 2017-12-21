@@ -5,6 +5,8 @@ $(function () {
     var uid = $('#uid').val();
     var phone = $('#phone').val();
 
+    $('.cancel-hint').html('');
+
     $.ajax({
       type: 'post',
       dataType: 'json',
@@ -20,22 +22,22 @@ $(function () {
           $('.booking-hint').html('预定成功');
           $('.booking-hint').css('color', 'green');
           getList();
+          $('#name').val('');
+          $('#uid').val('');
+          $('#phone').val('');
           break;
         case 1:
-          $('.booking-hint').html('预定失败');
-          $('.booking-hint').css('color', 'red');
-          break;
         case 2:
-          $('.booking-hint').html('现在不在订餐时间内（8:15-16:20）');
+          $('.booking-hint').html(res.payload);
           $('.booking-hint').css('color', 'red');
           break;
         default:
-          $('.booking-hint').html('预定失败');
+          $('.booking-hint').html('服务器错误，请联系管理员');
           $('.booking-hint').css('color', 'red');
         }
       },
       error: function () {
-        $('.booking-hint').html('预定失败');
+        $('.booking-hint').html('服务器错误，请联系管理员');
         $('.booking-hint').css('color', 'red');
       }
     });
@@ -45,6 +47,8 @@ $(function () {
     var name = $('#name').val();
     var uid = $('#uid').val();
     var phone = $('#phone').val();
+
+    $('.booking-hint').html('');
 
     $.ajax({
       type: 'post',
@@ -56,12 +60,22 @@ $(function () {
         phone: phone
       },
       success: function (res) {
-        if (!res.code) {
+        switch (res.code) {
+        case 0:
           $('.cancel-hint').html('取消预定成功');
           $('.cancel-hint').css('color', 'green');
           getList();
-        } else {
-          $('.cancel-hint').html('取消预定失败');
+          $('#name').val('');
+          $('#uid').val('');
+          $('#phone').val('');
+          break;
+        case 1:
+        case 2:
+          $('.cancel-hint').html(res.payload);
+          $('.cancel-hint').css('color', 'red');
+          break;
+        default:
+          $('.cancel-hint').html('服务器错误，请联系管理员');
           $('.cancel-hint').css('color', 'red');
         }
       },
@@ -91,7 +105,9 @@ function updateTable (res) {
   if (!res.code) {
     var str = '';
     var data = res.payload;
-
+    if (!res.timeStatus) {
+      $('.info').html('<p>' + '受理时间为 ' + res.startTime + '-' + res.finshTime + '</p>');
+    }
     for (var i in data) {
       str += '<tr>' +
         '<td>' + data[i].name + '</td>' +
