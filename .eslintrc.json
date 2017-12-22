@@ -18,7 +18,8 @@
           "space-before-blocks":"warn",
           "keyword-spacing":"warn",
           "key-spacing":"warn",
-          "no-debugger":"off"
+          "no-debugger":"off",
+          "no-inner-declarations":"off"
       },
       "globals": {
           "$":true

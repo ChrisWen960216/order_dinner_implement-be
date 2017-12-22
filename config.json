@@ -4,12 +4,12 @@
   },
   "time":{
     "startTime":[8,15],
-    "finshTime":[16,20],
-    "sendTime":[14,51],
+    "finshTime":[17,20],
+    "sendTime":[16,19],
     "cleanTime":[8,0]
   },
   "db":{
-    "url":""
+    "url":"mongodb://localhost:27017/orderDinnerDB"
   },
   "mail":{
    "transporter":{
@@ -24,8 +24,8 @@
     "mailOptions":{
       "from": "",
       "to": "",
-      "subject": "软件研究所今日订餐人员名单",
-      "text": "软件研究所今日订餐人员名单"
+      "subject": "",
+      "text": ""
     }
   }
 }

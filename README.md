@@ -31,17 +31,17 @@ Created By ChrisWen 17/12/19
   },
   "mail":{
    "transporter":{
-      "host": "mail.sansi.com", //邮件服务器
+      "host": "", //邮件服务器
       "port": 25, //邮箱端口
       "secure": false,  //邮箱私密协议
       "auth": {
-        "user": "sansi\\uid12404", //发件账号
-        "pass": "Sansi1280" // 发件密码
+        "user": "", //发件账号
+        "pass": "" // 发件密码
       }
     },
     "mailOptions":{
-      "from": "'ChrisWen' <wentao@sansi.com>", //发件人 "Name <邮箱地址>"
-      "to": "<wentao@sansi.com>", // 收件人
+      "from": "", //发件人 "Name <邮箱地址>"
+      "to": "", // 收件人
       "subject": "软件研究所今日订餐人员名单", // 邮件标题
       "text": "软件研究所今日订餐人员名单" // 邮件内容
     }

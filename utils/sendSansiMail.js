@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const path = require('path');
 
-const attachmentPath = path.join(__dirname, '../public/images/orderList.png');
+const attachmentPath = path.join(__dirname, '../public/images/output/form.pdf');
 
 const transporterConfig = require('../config.json').mail.transporter;
 const mailOptionsConfig = require('../config.json').mail.mailOptions;
@@ -16,9 +16,8 @@ function sendMail () {
     'to': mailOptionsConfig.to,
     'subject': mailOptionsConfig.subject,
     'text': mailOptionsConfig.text,
-    html: '<p><img src="cid:00000001"/></p>',
     attachments: [{
-      filename: 'orderList.png',
+      filename: 'orderlist.pdf',
       path: attachmentPath,
       cid: '00000001'
     }]
